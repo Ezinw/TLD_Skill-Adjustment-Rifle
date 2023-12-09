@@ -85,9 +85,10 @@ namespace SkillAdjustmentRifle
             if (currentTier == SkillTiers.Novice && Settings.settings.dmg2 >= 1) { __result += $"\nDamage increased by {Settings.settings.dmg2}%"; }
             if (currentTier == SkillTiers.Novice && Settings.settings.degrade2 >= 1) { __result += $"\nPer-use condition degradation reduced by {Settings.settings.degrade2}%"; }
             if (currentTier == SkillTiers.Novice && Settings.settings.range2 >= 1) { __result += $"\nEffective range increased by {Settings.settings.range2}"; }
-            if (currentTier == SkillTiers.Novice && Settings.settings.crit2 >= 1) { __result += $"\nCritical hit chance increased by {Settings.settings.crit2}%"; }
             if (currentTier == SkillTiers.Novice && Settings.settings.aim2 >= 0.1) { __result += $"\nIncrease aim assist angle degree: {Settings.settings.aim2:F2}"; }
             if (currentTier == SkillTiers.Novice && Settings.settings.stable2 >= 1) { __result += $"\nStability Bonus increased by {Settings.settings.stable2}%"; }
+            
+            if (currentTier == SkillTiers.Novice && Settings.settings.crit2 >= 1)
             {
                 int existingBenefitIndex = __result.IndexOf("Critical: ");
                 if (existingBenefitIndex != -1)
