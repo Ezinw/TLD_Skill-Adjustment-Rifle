@@ -1,259 +1,158 @@
-﻿using ModSettings;
+using ModSettings;
 using System.Reflection;
 
-namespace SkillAdjustmentRifle
+namespace SkillAdjustmentFirestarting
 {
     internal class Settings : JsonModSettings
     {
+        [Section("Fire Starting")]
+        [Name("Adjust fire starting skill?")]
+        private readonly bool Fire = true;
 
-        [Section("Rifle")]
+        //Tinder Requirement
+        [Name("No Tinder Required")]
+        [Description("Level when tinder is no longer required.(Game default = 3) (6 = Tinder is always required) - Requires game reload to take effect")]
+        [Slider(1, 6)]
+        public int tinder = 3;
 
-        [Name("Rifle Skills")]
-        private readonly bool Rifle = true;
-
-        //lvl 1
-        [Name("Rifle Level 1 ------------------------------")]
-        [Description("Show or hide level 1 skills - All changes made in game require a game reload to take effect")]
+        //lvl1
+        [Name("Fire Starting Level 1 ------------------------------")]
+        [Description("Show or hide level 1 skills - All changes require game reload to take effect")]
         [Choice("+", "-")]
-        public bool Rifle1 = false;
+        public bool Fire1 = false;
 
-        [Name("         - Critical Hit Bonus")]
-        [Description("Critical Hit chance.(Game default = 0%)")]
+        [Name("          Bonus Fire Starting")]
+        [Description("Increase % chance to start a fire.(Game default = 40%)")]
         [Slider(0, 100)]
-        public int crit1 = 0;
+        public int chance1 = 40;
 
-        [Name("         - Repair Bonus")]
-        [Description("Increase amount of condition recieved from repair.(Game default = 0%)")]
+        [Name("          Longer Lasting Fires")]
+        [Description("Increase the % duration of fires.(Game default = 0%)")]
+        [Slider(0, 200)]
+        public int duration1 = 0;
+
+        [Name("          Quicker Fire Starting")]
+        [Description("Quicker fire starting.(Game default = 0%)")]
         [Slider(0, 100)]
-        public int repair1 = 0;
+        public int quickstart1 = 0;
 
-        [Name("         - Accuracy")]
-        [Description("Bonus to Accuracy .(Game default = 0%)")]
-        [Slider(0, 100)]
-        public int accuracy1 = 0;
-
-        [Name("         - Damage Bonus")]
-        [Description("Increase damage.(Game default = 0%)")]
-        [Slider(0, 100)]
-        public int dmg1 = 0;
-
-        [Name("         - Condition Loss")]
-        [Description("Rifle condition decays slower per use..(Game default = 0%)")]
-        [Slider(0, 100)]
-        public int degrade1 = 0;
-
-        [Name("         - Aim assist")]
-        [Description("Increase aim assist.(Game default = 0.0)")]
-        [Slider(0.00f, 1.00f, NumberFormat = "{0:#.00}")]
-        public float aim1 = 0.00f;
-
-        [Name("         - Effective range")]
-        [Description("Increase effective range.(Game default = 75)")]
-        [Slider(75, 350)]
-        public int range1 = 75;
-
-        [Name("         - Stability bonus")]
-        [Description("Increase stability.(Game default = 0)")]
-        [Slider(0, 100)]
-        public int stable1 = 0;
-
-
-        //lvl 2
-        [Name("Rifle Level 2 ------------------------------")]
-        [Description("Show or hide level 2 skills - All changes made in game require a game reload to take effect")]
+        //lvl2
+        [Name("Fire Starting Level 2 ------------------------------")]
+        [Description("Show or hide level 2 skills - All changes require game reload to take effect")]
         [Choice("+", "-")]
-        public bool Rifle2 = false;
+        public bool Fire2 = false;
 
-        [Name("         - Critical Hit Bonus")]
-        [Description("Critical Hit chance.(Game default = 10%)")]
+        [Name("         - XP for level up")]
+        [Description("Set the number of skill points needed for next tier.(Game default = 20)")]
+        [Slider(20, 500)]
+        public int tier2 = 20;
+
+        [Name("          Bonus Fire Starting")]
+        [Description("Increase % chance to start a fire.(Game default = 55%)")]
         [Slider(0, 100)]
-        public int crit2 = 10;
+        public int chance2 = 55;
 
-        [Name("         - Repair Bonus")]
-        [Description("Increase amount of condition recieved from repair.(Game default = 2%)")]
+        [Name("          Longer Lasting Fires")]
+        [Description("Increase the % duration of fires.(Game default = 10%)")]
+        [Slider(0, 200)]
+        public int duration2 = 10;
+
+        [Name("          Quicker Fire Starting")]
+        [Description("Quicker fire starting.(Game default = 0%)")]
         [Slider(0, 100)]
-        public int repair2 = 2;
+        public int quickstart2 = 0;
 
-        [Name("         - Accuracy")]
-        [Description("Bonus to Accuracy .(Game default = 0%)")]
-        [Slider(0, 100)]
-        public int accuracy2 = 0;
-
-        [Name("         - Damage Bonus")]
-        [Description("Increase damage.(Game default = 0%)")]
-        [Slider(0, 100)]
-        public int dmg2 = 0;
-
-        [Name("         - Condition Loss")]
-        [Description("Rifle condition decays slower per use..(Game default = 0%)")]
-        [Slider(0, 100)]
-        public int degrade2 = 0;
-
-        [Name("         - Aim assist")]
-        [Description("Increase aim assist.(Game default = 0.2)")]
-        [Slider(0.00f, 1.00f, NumberFormat = "{0:#.00}")]
-        public float aim2 = 0.20f;
-
-        [Name("         - Effective range")]
-        [Description("Increase effective range.(Game default = 90)")]
-        [Slider(0, 350)]
-        public int range2 = 90;
-
-        [Name("         - Stability bonus")]
-        [Description("Increase stability.(Game default = 10)")]
-        [Slider(0, 100)]
-        public int stable2 = 10;
-
-
-        //lvl 3
-        [Name("Rifle Level 3 ------------------------------")]
-        [Description("Show or hide level 3 skills - All changes made in game require a game reload to take effect")]
+        //lvl3
+        [Name("Fire Starting Level 3 ------------------------------")]
+        [Description("Show or hide level 3 skills - All changes require game reload to take effect")]
         [Choice("+", "-")]
-        public bool Rifle3 = false;
+        public bool Fire3 = false;
 
-        [Name("         - Critical Hit Bonus")]
-        [Description("Critical Hit chance.(Game default = 15%)")]
+        [Name("         - XP for level up")]
+        [Description("Set the number of skill points needed for next tier.(Game default = 50)")]
+        [Slider(50, 500)]
+        public int tier3 = 50;
+
+        [Name("          Bonus Fire Starting")]
+        [Description("Increase % chance to start a fire.(Game default = 65%)")]
         [Slider(0, 100)]
-        public int crit3 = 15;
+        public int chance3 = 65;
 
-        [Name("         - Repair Bonus")]
-        [Description("Increase amount of condition recieved from repair.(Game default = 2%)")]
+        [Name("          Longer Lasting Fires")]
+        [Description("Increase the % duration of fires.(Game default = 10%)")]
+        [Slider(0, 200)]
+        public int duration3 = 10;
+
+        [Name("          Quicker Fire Starting")]
+        [Description("Quicker fire starting.(Game default = 0%)")]
         [Slider(0, 100)]
-        public int repair3 = 2;
+        public int quickstart3 = 0;
 
-        [Name("         - Accuracy")]
-        [Description("Bonus to Accuracy .(Game default = 20%)")]
-        [Slider(0, 100)]
-        public int accuracy3 = 20;
-
-        [Name("         - Damage Bonus")]
-        [Description("Increase damage.(Game default = 0%)")]
-        [Slider(0, 100)]
-        public int dmg3 = 0;
-
-        [Name("         - Condition Loss")]
-        [Description("Rifle condition decays slower per use..(Game default = 3%)")]
-        [Slider(0, 100)]
-        public int degrade3 = 3;
-
-        [Name("         - Aim assist")]
-        [Description("Increase aim assist.(Game default = 0.35)")]
-        [Slider(0.00f, 1.00f, NumberFormat = "{0:#.00}")]
-        public float aim3 = 0.35f;
-
-        [Name("         - Effective range")]
-        [Description("Increase effective range.(Game default = 110)")]
-        [Slider(0, 350)]
-        public int range3 = 110;
-
-        [Name("         - Stability bonus")]
-        [Description("Increase stability.(Game default = 20)")]
-        [Slider(0, 100)]
-        public int stable3 = 20;
-
-
-        //lvl 4
-        [Name("Rifle Level 4 ------------------------------")]
-        [Description("Show or hide level 4 skills - All changes made in game require a game reload to take effect")]
+        //lvl4
+        [Name("Fire Starting Level 4 ------------------------------")]
+        [Description("Show or hide level 4 skills - All changes require game reload to take effect")]
         [Choice("+", "-")]
-        public bool Rifle4 = false;
+        public bool Fire4 = false;
 
-        [Name("         - Critical Hit Bonus")]
-        [Description("Critical Hit chance.(Game default = 20%)")]
+        [Name("         - XP for level up")]
+        [Description("Set the number of skill points needed for next tier.(Game default = 100)")]
+        [Slider(100, 1000)]
+        public int tier4 = 100;
+
+        [Name("          Bonus Fire Starting")]
+        [Description("Increase % chance to start a fire.(Game default = 75%)")]
         [Slider(0, 100)]
-        public int crit4 = 20;
+        public int chance4 = 75;
 
-        [Name("         - Repair Bonus")]
-        [Description("Increase amount of condition recieved from repair.(Game default = 2%)")]
+        [Name("          Longer Lasting Fires")]
+        [Description("Increase the % duration of fires.(Game default = 25%)")]
+        [Slider(0, 200)]
+        public int duration4 = 25;
+
+        [Name("          Quicker Fire Starting")]
+        [Description("Quicker fire starting.(Game default = 0%)")]
         [Slider(0, 100)]
-        public int repair4 = 2;
+        public int quickstart4 = 0;
 
-        [Name("         - Accuracy")]
-        [Description("Bonus to Accuracy .(Game default = 30%)")]
-        [Slider(0, 100)]
-        public int accuracy4 = 30;
-
-        [Name("         - Damage Bonus")]
-        [Description("Increase damage.(Game default = 10%)")]
-        [Slider(0, 100)]
-        public int dmg4 = 10;
-
-        [Name("         - Condition Loss")]
-        [Description("Rifle condition decays slower per use..(Game default = 0%)")]
-        [Slider(0, 100)]
-        public int degrade4 = 0;
-
-        [Name("         - Aim assist")]
-        [Description("Increase aim assist.(Game default = 0.5)")]
-        [Slider(0.00f, 1.00f, NumberFormat = "{0:#.00}")]
-        public float aim4 = 0.50f;
-
-        [Name("         - Effective range")]
-        [Description("Increase effective range.(Game default = 150)")]
-        [Slider(0, 350)]
-        public int range4 = 150;
-
-        [Name("         - Stability bonus")]
-        [Description("Increase stability.(Game default = 30)")]
-        [Slider(0, 100)]
-        public int stable4 = 30;
-
-
-        //lvl 5
-        [Name("Rifle Level 5 ------------------------------")]
-        [Description("Show or hide level 5 skills - All changes made in game require a game reload to take effect")]
+        //lvl5
+        [Name("Fire Starting Level 5 ------------------------------")]
+        [Description("Show or hide level 5 skills - All changes require game reload to take effect")]
         [Choice("+", "-")]
-        public bool Rifle5 = false;
+        public bool Fire5 = false;
 
-        [Name("         - Critical Hit Bonus")]
-        [Description("Critical Hit chance.(Game default = 30%)")]
+        [Name("         - XP for level up")]
+        [Description("Set the number of skill points needed for next tier.(Game default = 200)")]
+        [Slider(200, 1000)]
+        public int tier5 = 200;
+
+        [Name("          Bonus Fire Starting")]
+        [Description("Increase % chance to start a fire.(Game default = 90%)")]
         [Slider(0, 100)]
-        public int crit5 = 30;
+        public int chance5 = 90;
 
-        [Name("         - Repair Bonus")]
-        [Description("Increase amount of condition recieved from repair.(Game default = 5%)")]
+        [Name("          Longer Lasting Fires")]
+        [Description("Increase the % duration of fires.(Game default = 50%)")]
+        [Slider(0, 200)]
+        public int duration5 = 50;
+
+        [Name("          Quicker Fire Starting")]
+        [Description("Quicker fire starting.(Game default = 50%)")]
         [Slider(0, 100)]
-        public int repair5 = 5;
+        public int quickstart5 = 50;
 
-        [Name("         - Accuracy")]
-        [Description("Bonus to Accuracy .(Game default = 30%)")]
-        [Slider(0, 100)]
-        public int accuracy5 = 30;
 
-        [Name("         - Damage Bonus")]
-        [Description("Increase damage.(Game default = 20%)")]
-        [Slider(0, 100)]
-        public int dmg5 = 20;
 
-        [Name("         - Condition Loss")]
-        [Description("Rifle condition decays slower per use..(Game default = 50%)")]
-        [Slider(0, 100)]
-        public int degrade5 = 50;
-
-        [Name("         - Aim assist")]
-        [Description("Increase aim assist.(Game default = 0.6)")]
-        [Slider(0.00f, 1.00f, NumberFormat = "{0:#.00}")]
-        public float aim5 = 0.60f;
-
-        [Name("         - Effective range")]
-        [Description("Increase effective range.(Game default = 250)")]
-        [Slider(0, 350)]
-        public int range5 = 250;
-
-        [Name("         - Stability bonus")]
-        [Description("Increase stability.(Game default = 50)")]
-        [Slider(0, 100)]
-        public int stable5 = 50;
 
 
         protected override void OnChange(FieldInfo field, object oldValue, object newValue)
         {
-            if (field.Name == nameof(Rifle)  ||
-                field.Name == nameof(Rifle1) ||
-                field.Name == nameof(Rifle2) ||
-                field.Name == nameof(Rifle3) ||
-                field.Name == nameof(Rifle4) ||
-                field.Name == nameof(Rifle5))
+
+            if (field.Name == nameof(Fire) ||
+                field.Name == nameof(Fire1) ||
+                field.Name == nameof(Fire2) ||
+                field.Name == nameof(Fire3) ||
+                field.Name == nameof(Fire4) ||
+                field.Name == nameof(Fire5))
             {
                 RefreshFields();
             }
@@ -261,57 +160,36 @@ namespace SkillAdjustmentRifle
 
         internal void RefreshFields()
         {
-            SetFieldVisible(nameof(Rifle1), Rifle);
-            SetFieldVisible(nameof(crit1), Rifle1 && Rifle);
-            SetFieldVisible(nameof(repair1), Rifle1 && Rifle);
-            SetFieldVisible(nameof(accuracy1), Rifle1 && Rifle);
-            SetFieldVisible(nameof(dmg1), Rifle1 && Rifle);
-            SetFieldVisible(nameof(degrade1), Rifle1 && Rifle);
-            SetFieldVisible(nameof(degrade1), Rifle1 && Rifle);
-            SetFieldVisible(nameof(degrade1), Rifle1 && Rifle);
-            SetFieldVisible(nameof(aim1), Rifle1 && Rifle);
-            SetFieldVisible(nameof(range1), Rifle1 && Rifle);
-            SetFieldVisible(nameof(stable1), Rifle1 && Rifle);
+            SetFieldVisible(nameof(tinder), Fire);
 
-            SetFieldVisible(nameof(Rifle2), Rifle);
-            SetFieldVisible(nameof(crit2), Rifle2 && Rifle);
-            SetFieldVisible(nameof(repair2), Rifle2 && Rifle);
-            SetFieldVisible(nameof(accuracy2), Rifle2 && Rifle);
-            SetFieldVisible(nameof(dmg2), Rifle2 && Rifle);
-            SetFieldVisible(nameof(degrade2), Rifle2 && Rifle);
-            SetFieldVisible(nameof(aim2), Rifle2 && Rifle);
-            SetFieldVisible(nameof(range2), Rifle2 && Rifle);
-            SetFieldVisible(nameof(stable2), Rifle2 && Rifle);
+            SetFieldVisible(nameof(Fire1), Fire);
+            SetFieldVisible(nameof(chance1), Fire1 && Fire);
+            SetFieldVisible(nameof(duration1), Fire1 && Fire);
+            SetFieldVisible(nameof(quickstart1), Fire1 && Fire);
 
-            SetFieldVisible(nameof(Rifle3), Rifle);
-            SetFieldVisible(nameof(crit3), Rifle3 && Rifle);
-            SetFieldVisible(nameof(repair3), Rifle3 && Rifle);
-            SetFieldVisible(nameof(accuracy3), Rifle3 && Rifle);
-            SetFieldVisible(nameof(dmg3), Rifle3 && Rifle);
-            SetFieldVisible(nameof(degrade3), Rifle3 && Rifle);
-            SetFieldVisible(nameof(aim3), Rifle3 && Rifle);
-            SetFieldVisible(nameof(range3), Rifle3 && Rifle);
-            SetFieldVisible(nameof(stable3), Rifle3 && Rifle);
+            SetFieldVisible(nameof(Fire2), Fire);
+            SetFieldVisible(nameof(chance2), Fire2 && Fire);
+            SetFieldVisible(nameof(duration2), Fire2 && Fire);
+            SetFieldVisible(nameof(quickstart2), Fire2 && Fire);
+            SetFieldVisible(nameof(tier2), Fire2 && Fire);
 
-            SetFieldVisible(nameof(Rifle4), Rifle);
-            SetFieldVisible(nameof(crit4), Rifle4 && Rifle);
-            SetFieldVisible(nameof(repair4), Rifle4 && Rifle);
-            SetFieldVisible(nameof(accuracy4), Rifle4 && Rifle);
-            SetFieldVisible(nameof(dmg4), Rifle4 && Rifle);
-            SetFieldVisible(nameof(degrade4), Rifle4 && Rifle);
-            SetFieldVisible(nameof(aim4), Rifle4 && Rifle);
-            SetFieldVisible(nameof(range4), Rifle4 && Rifle);
-            SetFieldVisible(nameof(stable4), Rifle4 && Rifle);
+            SetFieldVisible(nameof(Fire3), Fire);
+            SetFieldVisible(nameof(chance3), Fire3 && Fire);
+            SetFieldVisible(nameof(duration3), Fire3 && Fire);
+            SetFieldVisible(nameof(quickstart3), Fire3 && Fire);
+            SetFieldVisible(nameof(tier3), Fire3 && Fire);
 
-            SetFieldVisible(nameof(Rifle5), Rifle);
-            SetFieldVisible(nameof(crit5), Rifle5 && Rifle);
-            SetFieldVisible(nameof(repair5), Rifle5 && Rifle);
-            SetFieldVisible(nameof(accuracy5), Rifle5 && Rifle);
-            SetFieldVisible(nameof(dmg5), Rifle5 && Rifle);
-            SetFieldVisible(nameof(degrade5), Rifle5 && Rifle);
-            SetFieldVisible(nameof(aim5), Rifle5 && Rifle);
-            SetFieldVisible(nameof(range5), Rifle5 && Rifle);
-            SetFieldVisible(nameof(stable5), Rifle5 && Rifle);
+            SetFieldVisible(nameof(Fire4), Fire);
+            SetFieldVisible(nameof(chance4), Fire4 && Fire);
+            SetFieldVisible(nameof(duration4), Fire4 && Fire);
+            SetFieldVisible(nameof(quickstart4), Fire4 && Fire);
+            SetFieldVisible(nameof(tier4), Fire4 && Fire);
+
+            SetFieldVisible(nameof(Fire5), Fire);
+            SetFieldVisible(nameof(chance5), Fire5 && Fire);
+            SetFieldVisible(nameof(duration5), Fire5 && Fire);
+            SetFieldVisible(nameof(quickstart5), Fire5 && Fire);
+            SetFieldVisible(nameof(tier5), Fire5 && Fire);
 
         }
 
@@ -320,7 +198,7 @@ namespace SkillAdjustmentRifle
         internal static void OnLoad()
         {
             settings = new Settings();
-            settings.AddToModSettings("Skill-Adjustment-Rifle");
+            settings.AddToModSettings("Skill-Adjustment-Firestarting");
             settings.RefreshFields();
         }
     }
